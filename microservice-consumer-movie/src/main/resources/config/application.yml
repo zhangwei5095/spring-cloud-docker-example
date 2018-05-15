@@ -1,0 +1,18 @@
+server:
+  port: 7901
+spring:
+  application:
+    name: microservice-consumer-movie
+  #zipkin:
+    #base-url: http://127.0.0.1:7788
+user:
+  userServicePath: http://localhost:7900/simple/      #指定生产者的路径
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8761/eureka/,http://admin:admin@peer2:8762/eureka/,http://admin:admin@peer3:8763/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}

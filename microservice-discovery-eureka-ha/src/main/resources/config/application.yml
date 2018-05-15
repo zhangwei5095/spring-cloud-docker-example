@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: EUREKA-HA
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin

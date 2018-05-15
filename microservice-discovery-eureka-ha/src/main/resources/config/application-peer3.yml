@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: EUREKA-HA
+    profiles:
+      active: peer3
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin
+server:
+  port: 8763
+
+eureka:
+  instance:
+    hostname: peer3       #Eureka实例的主机名
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin@peer1:8761/eureka/,http://admin:admin@peer2:8762/eureka/  #Eureka节点相互注册
+      register-with-eureka: true
